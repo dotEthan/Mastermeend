@@ -1,0 +1,486 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  <div class="board__contain">
+    <div class="header">
+      <div class="title">
+        MasterMeend
+      </div>
+      <div class="header__box">
+        <div class="cellscore">
+          <div id="plscore">
+            Score: <span id="score" class="headerscore">0</span>
+          </div>
+          <button class="reset__button">Reset Board</button>
+          <div id="topscore">
+            High Score: <span class="highscore">0</span>
+          </div> 
+          <div class="options__contain">
+            <div class="options__tab">
+              Options
+            </div>
+            <div class="options__all">
+              <div id="resetdiv">
+                <div class="select" id="coloursselect">
+                  <div class="option__title">Number of Colours</div>
+                  <div class="option__colours">
+                    <div class="option__firstColours">
+                      <div class="firstthree colour--first"></div>
+                      <div class="firstthree colour--second"></div>
+                      <div class="firstthree colour--third"></div>
+                    </div>
+                    <div class="option__colours--each colour-4" data-which="4">
+                      <div class="option__colours--colour">
+                        <div class="option__colour option-4 on"></div>
+                      </div>
+                      <div class="option__colours--number">4</div>
+                    </div>
+                    <div class="option__colours--each colour-5" data-which="5">
+                      <div class="option__colours--colour">
+                        <div class="option__colour option-5"></div>
+                      </div>
+                      <div class="option__colours--number">5</div>
+                    </div>
+                    <div class="option__colours--each colour-6" data-which="6">
+                      <div class="option__colours--colour">
+                        <div class="option__colour option-6"></div>
+                      </div>
+                      <div class="option__colours--number">6</div>
+                    </div>
+                    <div class="option__colours--each colour-7" data-which="7">
+                      <div class="option__colours--colour">
+                        <div class="option__colour option-7"></div>
+                      </div>
+                      <div class="option__colours--number">7</div>
+                    </div>
+                    <div class="option__colours--each colour-8" data-which="8">
+                      <div class="option__colours--colour">
+                        <div class="option__colour option-8"></div>
+                      </div>
+                      <div class="option__colours--number">8</div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="select" id="patternselect">
+                  <div class="option__title">Length of Pattern</div>
+                  <div class="option__colours">
+                    <div class="option__patterns--each pattern-4">
+                      <div class="option__pattern--number option-4 on">4</div>
+                    </div>
+                    <div class="option__patterns--each pattern-5">
+                      <div class="option__pattern--number option-5">5</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="select" id="turnsselect">
+                  <div class="option__title">Number of Turns</div>
+                  <div class="option__colours">
+                    <div class="option__turns turn-5">
+                      <div class="option__turn--number option-5">5</div>
+                    </div>
+                    <div class="option__turns turn-6">
+                      <div class="option__turn--number option-6">6</div>
+                    </div>
+                    <div class="option__turns turn-7">
+                      <div class="option__turn--number option-7">7</div>
+                    </div>
+                    <div class="option__turns turn-8">
+                      <div class="option__turn--number option-8">8</div>
+                    </div>
+                    <div class="option__turns turn-9">
+                      <div class="option__turn--number option-9">9</div>
+                    </div>
+                    <div class="option__turns turn-10">
+                      <div class="option__turn--number option-10 on">10</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="instruct">Instructions</div>
+              </div>
+            </div>
+            <div class="instructions">
+              <div class="instructions__words">Choose which color goes where and use the hints given to try and solve the puzzle.</div>
+              <div class="instructions__each instr--right">
+                <div class="instr__dot right"></div>
+                <div class="instr__text">Right Color Right Place</div>            
+              </div>
+              <div class="instructions__each instr--wrong">
+                <div class="instr__dot wrong"></div>
+                <div class="instr__text">Right Color Wrong Place</div>
+              </div>         
+            </div>
+          </div>
+        </div>
+        <div id="cellright">
+          <div id="choiceheader">
+            <div id="choicetext">Your Choice</div>
+            <div id="colourchoice" class="choicebutton chosen"></div>
+          </div>
+          <div id="choicebox">
+            <div id="color-0" class="choicebutton choices choice-0"></div>
+            <div id="color-1" class="choicebutton choices choice-1"></div>
+            <div id="color-2" class="choicebutton choices choice-2"></div>
+            <div id="color-3" class="choicebutton choices choice-3"></div>
+            <div id="color-4" class="choicebutton choices choice-4"></div>
+            <div id="color-5" class="choicebutton choices choice-5"></div>
+            <div id="color-6" class="choicebutton choices choice-6"></div>
+            <div id="color-7" class="choicebutton choices choice-7"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rowscontain">
+      <div id="gameover" class="overlay__contain">
+        <div class="win">
+          <div class="gameover__title">You Win!
+            <div class="lose__text">Score: <span class="score"></span></div>
+          </div>
+          <div class="lose__tip">Congratulations on besting me, now go on and find fame and glory as a Mastermeend Ronin! </div>
+        </div>
+        <div class="lose">
+          <div class="gameover__title">You Lost!
+            
+            <div class="lose__text">But I still love you!<span class="score"></span></div>
+          </div>
+          <div class="lose__tip">Try writing out the problem on a piece of paper or explaining it to your dog, often just the act of thinking about a problem in a new way can trigger that "Eureka!" moment.</div>
+        </div>
+      </div>
+      <div class ="rows">
+        <div class="onerow">
+          <div class="status--indicator indicator0 active">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell0 cell00 on">
+              <div class="row row0 row00"></div>
+            </div>
+            <div class="cell cell0 cell01 on">
+              <div class="row row0 row01"></div>
+            </div>
+            <div class="cell cell0 cell02 on">
+              <div class="row row0 row02"></div>
+            </div>
+            <div class="cell cell0 cell03 on">
+              <div class="row row0 row03"></div>
+            </div>
+            <div class="cell cell0 cell04 on">
+              <div class="row row0 row04"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready0">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell0"></div>
+            <div class="hints hintcell0"></div>
+            <div class="hints hintcell0 middle"></div>
+            <div class="hints hintcell0"></div> 
+            <div class="hints hintcell0"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator1">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell1 cell10 on">
+              <div class="row row1 row10"></div>
+            </div>
+            <div class="cell cell1 cell11 on">
+              <div class="row row1 row11"></div>
+            </div>
+            <div class="cell cell1 cell12 on">
+              <div class="row row1 row12"></div>
+            </div>
+            <div class="cell cell1 cell13 on">
+              <div class="row row1 row13"></div>
+            </div>
+            <div class="cell cell1 cell14 on">
+              <div class="row row1 row14"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready1">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell1"></div>
+            <div class="hints hintcell1"></div>
+            <div class="hints hintcell1 middle"></div>
+            <div class="hints hintcell1"></div> 
+            <div class="hints hintcell1"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell2 cell20 on">
+              <div class="row row2 row20"></div>
+            </div>
+            <div class="cell cell2 cell21 on">
+              <div class="row row2 row21"></div>
+            </div>
+            <div class="cell cell2 cell22 on">
+              <div class="row row2 row22"></div>
+            </div>
+            <div class="cell cell2 cell23 on">
+              <div class="row row2 row23"></div>
+            </div>
+            <div class="cell cell2 cell24 on">
+              <div class="row row2 row24"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready2">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell2"></div>
+            <div class="hints hintcell2"></div>
+            <div class="hints hintcell2 middle"></div>
+            <div class="hints hintcell2"></div> 
+            <div class="hints hintcell2"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator3">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell3 cell30 on">
+              <div class="row row3 row30"></div>
+            </div>
+            <div class="cell cell3 cell31 on">
+              <div class="row row3 row31"></div>
+            </div>
+            <div class="cell cell3 cell32 on">
+              <div class="row row3 row32"></div>
+            </div>
+            <div class="cell cell3 cell33 on">
+              <div class="row row3 row33"></div>
+            </div>
+            <div class="cell cell3 cell34 on">
+              <div class="row row3 row34"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready3">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell3"></div>
+            <div class="hints hintcell3"></div>
+            <div class="hints hintcell3 middle"></div>
+            <div class="hints hintcell3"></div> 
+            <div class="hints hintcell3"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator4">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell4 cell40 on">
+              <div class="row row4 row40"></div>
+            </div>
+            <div class="cell cell4 cell41 on">
+              <div class="row row4 row41"></div>
+            </div>
+            <div class="cell cell4 cell42 on">
+              <div class="row row4 row42"></div>
+            </div>
+            <div class="cell cell4 cell43 on">
+              <div class="row row4 row43"></div>
+            </div>
+            <div class="cell cell4 cell44 on">
+              <div class="row row4 row44"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready4">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell4"></div>
+            <div class="hints hintcell4"></div>
+            <div class="hints hintcell4 middle"></div>
+            <div class="hints hintcell4"></div> 
+            <div class="hints hintcell4"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator5">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell5 cell50 on">
+              <div class="row row5 row50"></div>
+            </div>
+            <div class="cell cell5 cell51 on">
+              <div class="row row5 row51"></div>
+            </div>
+            <div class="cell cell5 cell52 on">
+              <div class="row row5 row52"></div>
+            </div>
+            <div class="cell cell5 cell53 on">
+              <div class="row row5 row53"></div>
+            </div>
+            <div class="cell cell5 cell54 on">
+              <div class="row row5 row54"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready5">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell5"></div>
+            <div class="hints hintcell5"></div>
+            <div class="hints hintcell5 middle"></div>
+            <div class="hints hintcell5"></div> 
+            <div class="hints hintcell5"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator6">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell6 cell60 on">
+              <div class="row row6 row60"></div>
+            </div>
+            <div class="cell cell6 cell61 on">
+              <div class="row row6 row61"></div>
+            </div>
+            <div class="cell cell6 cell62 on">
+              <div class="row row6 row62"></div>
+            </div>
+            <div class="cell cell6 cell63 on">
+              <div class="row row6 row63"></div>
+            </div>
+            <div class="cell cell6 cell64 on">
+              <div class="row row6 row64"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready6">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell6"></div>
+            <div class="hints hintcell6"></div>
+            <div class="hints hintcell6 middle"></div>
+            <div class="hints hintcell6"></div> 
+            <div class="hints hintcell6"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator7">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell7 cell70 on">
+              <div class="row row7 row70"></div>
+            </div>
+            <div class="cell cell7 cell71 on">
+              <div class="row row7 row71"></div>
+            </div>
+            <div class="cell cell7 cell72 on">
+              <div class="row row7 row72"></div>
+            </div>
+            <div class="cell cell7 cell73 on">
+              <div class="row row7 row73"></div>
+            </div>
+            <div class="cell cell7 cell74 on">
+              <div class="row row7 row74"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready7">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell7"></div>
+            <div class="hints hintcell7"></div>
+            <div class="hints hintcell7 middle"></div>
+            <div class="hints hintcell7"></div> 
+            <div class="hints hintcell7"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator8">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell8 cell80 on">
+              <div class="row row8 row80"></div>
+            </div>
+            <div class="cell cell8 cell81 on">
+              <div class="row row8 row81"></div>
+            </div>
+            <div class="cell cell8 cell82 on">
+              <div class="row row8 row82"></div>
+            </div>
+            <div class="cell cell8 cell83 on">
+              <div class="row row8 row83"></div>
+            </div>
+            <div class="cell cell8 cell84 on">
+              <div class="row row8 row84"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready8">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell8"></div>
+            <div class="hints hintcell8"></div>
+            <div class="hints hintcell8 middle"></div>
+            <div class="hints hintcell8"></div> 
+            <div class="hints hintcell8"></div>            
+          </div>
+        </div>
+        <div class="onerow">
+          <div class="status--indicator indicator9">
+            <div class="status"></div>
+          </div>
+          <div class="cells">
+            <div class="cell cell9 cell90 on">
+              <div class="row row9 row90"></div>
+            </div>
+            <div class="cell cell9 cell91 on">
+              <div class="row row9 row91"></div>
+            </div>
+            <div class="cell cell9 cell92 on">
+              <div class="row row9 row92"></div>
+            </div>
+            <div class="cell cell9 cell93 on">
+              <div class="row row9 row93"></div>
+            </div>
+            <div class="cell cell9 cell94 on">
+              <div class="row row9 row94"></div>
+            </div>
+          </div>
+          <div class="done">
+            <div class="ready ready9">Submit?</div>
+          </div>
+          <div class="guide">
+            <div class="hints hintcell9"></div>
+            <div class="hints hintcell9"></div>
+            <div class="hints hintcell9 middle"></div>
+            <div class="hints hintcell9"></div> 
+            <div class="hints hintcell9"></div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
