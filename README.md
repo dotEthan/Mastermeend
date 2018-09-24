@@ -1,3 +1,6 @@
 # Mastermeend
 
-A classic Remake of a totally different game than what you're thinking of.
+A remake of a classic game.
+
+Planned expansions: 
+*adding shapes to the pattern to amplify the difficulty.
